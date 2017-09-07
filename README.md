@@ -16,7 +16,7 @@ $ source venv/scripts/activate (Windows)
 (venv) $ pip install -r requirements.txt
 (venv) $ python routes.py
 ```
-(/static/device.png?raw=true "Learning Flask")
+![learning-flask](/static/device.png)
 
 ### Prerequisites
 
