@@ -19,10 +19,10 @@ $ source venv/scripts/activate (Windows)
 
 ### Prerequisites
 
-Things you will need installed to make this application work is pip, flask, python, terminal, web browser.
+Things you will need installed to make this application work is.
 
 ```
-Give examples
+pip, flask, python, terminal, web browser
 ```
 
 ### Installing
