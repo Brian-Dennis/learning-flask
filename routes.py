@@ -34,26 +34,19 @@ def signup():
   if 'email' in session:
     return redirect(url_for('home'))
 
-    form = SignupForm()
+  form = SignupForm()
 
-    # Validating form
-    if request.method == 'POST':
-        if form.validate() == False:
-            return render_template('signup.html', form=form)
-        else:
-          # Getting form data ready for submission
-          newuser = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data)
+  # Validating form
+  if request.method == 'POST':
+    if form.validate() == False:
+      return render_template('signup.html', form=form)
+    else:
+      newuser = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data)
+      db.session.add(newuser)
+      db.session.commit()
 
-          # Adding and commiting form data to db with newuser variable from above.
-          db.session.add(newuser)
-          db.session.commit()
-
-          # Creating a user session redirect home
-          session['email'] = newuser.email
-          return redirect(url_for('home'))
-
-    elif request.method == 'GET':
-        return render_template('signup.html', form=form)
+  elif request.method == 'GET':
+    return render_template('signup.html', form=form)
 
 
 # Login route
@@ -93,7 +86,7 @@ def logout():
 
 
 # Home route
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
   if 'email' not in session:
     return redirect(url_for('login'))
@@ -102,7 +95,7 @@ def home():
   form = AddressForm()
 
   places = []
-  my_coordinates = (47.5729, 117.6822)
+  my_coordinates = (47.5729, -117.6822)
 
   # Checking form submission
   if request.method == 'POST':
